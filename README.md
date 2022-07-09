@@ -1,2 +1,2 @@
 # Destiny-Loadout-Manager
-A small home baked python destiny loadout manager
+A small home baked python destiny loadout manager.
