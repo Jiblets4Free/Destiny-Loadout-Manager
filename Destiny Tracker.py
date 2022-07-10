@@ -1,5 +1,3 @@
-## Jib's playDestiny Tracker
-
 import pydest
 import asyncio
 
