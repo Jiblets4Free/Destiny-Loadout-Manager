@@ -5,8 +5,8 @@ def GetManifest():
     manifest = requests.get(manifest_url,headers={"x-api-key":"bc7717e228cd49e58ec26949bba34f51"}).json()
     mani_url = 'http://www.bungie.net'+manifest['Response']['mobileWorldContentPaths']['en']
     r = requests.get(mani_url)
-    with open("Manifest") as zip:
-        zip.write(r.contents)
+    with open("Manifest","wb") as zip:
+        zip.write(r.content)
     print("Download complete!")
 
 def GetProfile():
