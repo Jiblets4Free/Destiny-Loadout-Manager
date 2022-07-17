@@ -83,8 +83,8 @@ def build_dict(hash_dict):
     print('Dictionary Generated!')
     return all_data
 
-def get_profile(CharacterID):
-    api_url = "https://www.bungie.net/Platform/Destiny2/1/Profile/4611686018513964725/?components=205" #This URL is specific to my account currently (Acer, Topper of Laps)
+def get_profile(ProdifileID,CharacterID):
+    api_url = "https://www.bungie.net/Platform/Destiny2/2/Profile/" + str(ProdifileID) + "/?components=205" #This URL is specific to my account currently (Acer, Topper of Laps)
     response = requests.get(api_url,headers={"x-api-key":"bc7717e228cd49e58ec26949bba34f51"}) #This requests the above URL and adds the api key into the header so that the Destiny API doesnt reject the request
     JSON_response = response.json()
     myItems = JSON_response["Response"]["characterEquipment"]["data"][CharacterID]["items"]
@@ -93,11 +93,11 @@ def get_profile(CharacterID):
 
 def get_item_info(hash):
     try: #This tries to Convert the hash into an item List
-        item = all_data['DestinyInventoryItemDefinition'][hash]
+        item = all_data['DestinyInventoryItemDefinition'][int(hash)]
         return[item['itemName'],item['itemTypeName'],item['tierTypeName']]
     except KeyError:
-        return(["Could","Not","Load - KeyError"])
-    
+        return(["Could","Not","Load - KeyError hash = " + str(hash)])
+
 if __name__ == "__main__":
     #check if pickle exists, if not create one.
     if os.path.isfile(r'manifest.content') == False:
@@ -112,7 +112,7 @@ if __name__ == "__main__":
     with open('manifest.pickle', 'rb') as data:
         all_data = pickle.load(data)
 
-    get_profile("2305843009290026250")
+    get_profile("4611686018513964725","2305843010086124237")
 
 #566976653 - not working
 #1274330687 - ghorn
